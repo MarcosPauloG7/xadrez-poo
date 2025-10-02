@@ -7,8 +7,8 @@ class Peca():
         self.cor = cor
     
     def desenhar(self, tela, tamanho):
-        x = self.coluna*tamanho + tamanho // 2
-        y = self.linha*tamanho + tamanho // 2
+        x = self.coluna * tamanho + tamanho // 2
+        y = self.linha * tamanho + tamanho // 2
         r = tamanho // 3
         cor = None
         if self.cor == 'branco':
@@ -22,36 +22,73 @@ class Cavalo(Peca):
         super().__init__(linha, coluna, cor)
 
     def desenhar(self, tela, tamanho):
-        x = self.coluna*tamanho + tamanho // 2
-        y = self.linha*tamanho + tamanho // 2
-        r = tamanho // 3
-        cor = None
+        x = self.coluna * tamanho
+        y = self.linha * tamanho
         if self.cor == 'branco':
-            cor = (121, 180, 134)
+            image = pygame.transform.scale(
+                pygame.image.load('img/cavalo.png'),
+                (tamanho, tamanho)
+            )
         else:
-            cor = (248, 180, 134)
-        pontas_triangulo = [
-            (x, y - r),
-            (x - r, y + r),
-            (x + r, y + r)
-        ]
-        pygame.draw.polygon(tela, cor, pontas_triangulo)
+            image = pygame.transform.scale(
+                pygame.image.load('img/cavalo_preto.png'),
+                (tamanho, tamanho)
+            )
+        tela.blit(image, (x, y))
 
 class Torre(Peca):
     def __init__(self, linha, coluna, cor):
         super().__init__(linha, coluna, cor)
 
     def desenhar(self, tela, tamanho):
-        x = self.coluna*tamanho + tamanho // 2
-        y = self.linha*tamanho + tamanho // 2
-        r = tamanho // 3
-        cor = None
+        x = self.coluna * tamanho 
+        y = self.linha * tamanho 
         if self.cor == 'branco':
-            cor = (121, 180, 134)
+            image = pygame.transform.scale(
+                pygame.image.load('img/torre.png'),
+                (tamanho, tamanho)
+            )
         else:
-            cor = (248, 180, 134)
+            image = pygame.transform.scale(
+                pygame.image.load('img/torre_preta.png'),
+                (tamanho, tamanho)
+            )
+        tela.blit(image, (x, y))
 
-        lado = int(tamanho * 0.6)
-        rect = pygame.Rect(0,0, lado, lado)
-        rect.center = (x,y)
-        pygame.draw.rect(tela, cor, rect)
+class Peao(Peca):
+    def __init__(self, linha, coluna, cor):
+        super().__init__(linha, coluna, cor)
+    
+    def desenhar(self, tela, tamanho):
+        x = self.coluna * tamanho
+        y = self.linha * tamanho
+        if self.cor == 'branco':
+            image = pygame.transform.scale(
+                pygame.image.load('img/peao.png'),
+                (tamanho, tamanho)
+            )
+        else:
+            image = pygame.transform.scale(
+                pygame.image.load('img/peao_preto.png'),
+                (tamanho, tamanho)
+            )
+        tela.blit(image, (x, y))
+
+class Bispo(Peca):
+    def __init__(self, linha, coluna, cor):
+        super().__init__(linha, coluna, cor)
+    
+    def desenhar(self, tela, tamanho):
+        x = self.coluna * tamanho
+        y = self.linha * tamanho
+        if self.cor == 'branco':
+            image = pygame.transform.scale(
+                pygame.image.load('img/bispo.png'),
+                (tamanho, tamanho)
+            )
+        else:
+            image = pygame.transform.scale(
+                pygame.image.load('img/bispo_preto.png'),
+                (tamanho, tamanho)
+            )
+        tela.blit(image, (x, y))
