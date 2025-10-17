@@ -9,7 +9,11 @@ rodando = True
 while rodando:
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
-            rodando = False        
+            rodando = False       
+        elif evento.type == pygame.MOUSEBUTTONDOWN and evento.button == 1:
+            x,y = pygame.mouse.get_pos()
+            tabuleiro.clicar(x,y)
+
         tabuleiro.desenhar()
         pygame.display.flip()
 pygame.quit()
